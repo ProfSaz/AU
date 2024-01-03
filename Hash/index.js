@@ -1,5 +1,5 @@
-const { sha256 } = require("ethereum-cryptography/sha256");
-const { toHex, utf8ToBytes } = require("ethereum-cryptography/utils");
+import { sha256 } from "ethereum-cryptography/sha256";
+import { toHex, utf8ToBytes } from "ethereum-cryptography/utils";
 
 // the possible colors that the hash could represent
 const COLORS = ['red', 'green', 'blue', 'yellow', 'pink', 'orange'];
@@ -11,6 +11,4 @@ function findColor(hash) {
     console.log("yes");
 }
 
-const osas = "yes";
-
-module.exports = findColor;
+export default findColor;

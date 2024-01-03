@@ -1,17 +1,14 @@
-import {assert} from 'chai';
-import osas from '../index.js';
-import findColor from '../index.js';
-const { sha256 } = require("ethereum-cryptography/sha256");
-const { utf8ToBytes } = require("ethereum-cryptography/utils");
+import { expect } from 'chai';
+import { sha256 } from 'ethereum-cryptography/sha256';
+import { utf8ToBytes } from 'ethereum-cryptography/utils';
+import findColor from '../Hash/index.js';
 
 const COLORS = ['red', 'green', 'blue', 'yellow', 'pink', 'orange'];
 
 describe('findColor', () => {
     COLORS.forEach((color) => {
         it(`should work for ${color}`, () => {
-            assert.equal(findColor(sha256(utf8ToBytes(color))), color);
+            expect(findColor(sha256(utf8ToBytes(color)))).to.equal(color);
         });
     });
 });
-
-console.log(osas);
