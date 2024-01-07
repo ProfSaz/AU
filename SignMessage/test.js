@@ -1,7 +1,7 @@
 import signMessage from './signmessage.js';
 import hashMessage from './hashmessage.js';
 import { assert } from 'chai';
-import secp from "ethereum-cryptography/secp256k1";
+import { secp256k1 } from 'ethereum-cryptography/secp256k1.js';
 import { toHex } from "ethereum-cryptography/utils";
 
 const PRIVATE_KEY = "6b911fd37cdf5c81d4c0adb1ab7fa822ed253ab0ad9aa18d77257c88b29b718e";
@@ -22,9 +22,9 @@ describe('Sign Message', () => {
     it('should have been signed by the same private key', async () => {
         const [sig, recoveryBit] = await signMessage('hello world');
         const messageHash = hashMessage('hello world');
-        const recovered = secp.recoverPublicKey(messageHash, sig, recoveryBit);
+        const recovered = secp256k1.recoverPublicKey(messageHash, sig, recoveryBit);
 
-        const publicKey = secp.getPublicKey(PRIVATE_KEY);
+        const publicKey = secp256k1.getPublicKey(PRIVATE_KEY);
         assert.equal(toHex(recovered), toHex(publicKey));
     });
 });
