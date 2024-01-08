@@ -1,7 +1,7 @@
 import signMessage from './signmessage.js';
 import hashMessage from './hashmessage.js';
 import { assert } from 'chai';
-import * as secp from "@noble/secp256k1";
+import * as secp from "@noble/secp256k1"
 import { secp256k1 } from 'ethereum-cryptography/secp256k1';
 import { toHex } from "ethereum-cryptography/utils";
 
