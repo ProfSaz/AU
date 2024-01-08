@@ -3,8 +3,10 @@ import recoverKey from './recoverkey.js';
 import * as secp from '@noble/secp256k1';
 import { assert } from 'chai';
 import { toHex } from 'ethereum-cryptography/utils.js';
+import { config } from 'dotenv';
+config();
 
-const PRIVATE_KEY = "6b911fd37cdf5c81d4c0adb1ab7fa822ed253ab0ad9aa18d77257c88b29b718e";
+const PRIVATE_KEY = process.env.PRIVATE_KEY; // Now reads the variable from .env
 
 describe('Recover Key', () => {
     it('should recover the public key from a signed message', async () => {

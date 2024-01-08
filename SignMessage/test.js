@@ -4,8 +4,10 @@ import { assert } from 'chai';
 import * as secp from "@noble/secp256k1"
 import { secp256k1 } from 'ethereum-cryptography/secp256k1';
 import { toHex } from "ethereum-cryptography/utils";
+import { config } from 'dotenv';
+config();
 
-const PRIVATE_KEY = "6b911fd37cdf5c81d4c0adb1ab7fa822ed253ab0ad9aa18d77257c88b29b718e";
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 describe('Sign Message', () => {
     it('should return both a signature and a recovery bit', async () => {
