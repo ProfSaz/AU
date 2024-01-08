@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import { sha256 } from 'ethereum-cryptography/sha256';
-import { utf8ToBytes } from 'ethereum-cryptography/utils';
-import findColor from '../Hash/index.js';
+import { sha256 } from 'ethereum-cryptography/sha256.js';
+import { utf8ToBytes } from 'ethereum-cryptography/utils.js';
+import findColor from './index.js';
 
 const COLORS = ['red', 'green', 'blue', 'yellow', 'pink', 'orange'];
 

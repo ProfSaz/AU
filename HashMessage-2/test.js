@@ -1,6 +1,6 @@
 import hashMessage from './hashmessage.js';
 import { assert } from 'chai';
-import { toHex } from 'ethereum-cryptography/utils';
+import { toHex } from 'ethereum-cryptography/utils.js';
 
 const helloWorldHex = '47173285a8d7341e5e972fc677286384f802f8ef42a5ec5f03bbfa254cb01fad';
 
