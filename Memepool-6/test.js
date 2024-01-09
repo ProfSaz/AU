@@ -1,11 +1,11 @@
 import { assert } from 'chai';
-import { addTransaction, mempool } from './index.js';
+import blockchain from './index.js';
 
 describe('addTransaction', () => {
     it('should add the transaction to the mempool', () => {
         const transaction = { to: 'bob', sender: 'alice' }
-        addTransaction(transaction);
-        assert.equal(mempool.length, 1);
-        assert.equal(mempool[0], transaction);
+        blockchain.addTransaction(transaction);
+        assert.equal(blockchain.mempool.length, 1);
+        assert.equal(blockchain.mempool[0], transaction);
     });
 });

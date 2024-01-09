@@ -13,11 +13,12 @@ function mine() {
     // TODO: mine a block
 }
 
-export default {
+const blockchain = {
     TARGET_DIFFICULTY,
     MAX_TRANSACTIONS,
     addTransaction,
     mine,
     blocks,
     mempool
-};
+}
+export default blockchain;
