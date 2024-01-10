@@ -4,34 +4,60 @@ import CryptoJS from 'crypto-js';
 const { SHA256 } = CryptoJS;
 
 describe('mine', () => {
-    describe('first block', () => {
-        let hash;
+    describe('with 5 mempool transactions', () => {
         before(() => {
-            hash = blockchain.mine();
+            for(let i = 0; i < 5; i++) {
+                blockchain.addTransaction({ sender: 'bob', to: 'alice' });
+            }
         });
-        it('should add to the blocks', () => {
-            assert.equal(blockchain.blocks.length, 1);
-        });
-        it('should return the expected hash', () => {
-            const expectedHash = SHA256(JSON.stringify({ id: 0 }));
-            const lastBlock = blockchain.blocks[blockchain.blocks.length - 1];
-            assert(lastBlock.hash, "did not find a hash property on the block");
-            assert.equal(lastBlock.hash.toString(), expectedHash.toString());
+        describe('after mining', () => {
+            before(() => {
+                blockchain.mine();
+            });
+            it('should add to the blocks', () => {
+                assert.equal(blockchain.blocks.length, 1);
+            });
+            it('should store the transactions on the block', () => {
+                assert.equal(blockchain.blocks[blockchain.blocks.length - 1].transactions.length, 5);
+            });
+            it('should clear the mempool', () => {
+                assert.equal(blockchain.mempool.length, 0);
+            });
         });
     });
-    describe('second block', () => {
-        let hash;
+    describe('with 15 mempool transactions', () => {
         before(() => {
-            hash = blockchain.mine();
+            for (let i = 0; i < 15; i++) {
+                blockchain.addTransaction({ sender: 'bob', to: 'alice' });
+            }
         });
-        it('should add to the blocks', () => {
-            assert.equal(blockchain.blocks.length, 2);
-        });
-        it('should return the expected hash', () => {
-            const expectedHash = SHA256(JSON.stringify({ id: 1 }));
-            const lastBlock = blockchain.blocks[blockchain.blocks.length - 1];
-            assert(lastBlock.hash, "did not find a hash property on the block");
-            assert.equal(lastBlock.hash.toString(), expectedHash.toString());
+        describe('after mining', () => {
+            before(() => {
+                blockchain.mine();
+            });
+            it('should add to the blocks', () => {
+                assert.equal(blockchain.blocks.length, 2);
+            });
+            it('should store the transactions on the block', () => {
+                assert.equal(blockchain.blocks[blockchain.blocks.length - 1].transactions.length, 10);
+            });
+            it('should reduce the mempool to 5', () => {
+                assert.equal(blockchain.mempool.length, 5);
+            });
+            describe('after mining again', () => {
+                before(() => {
+                    blockchain.mine();
+                });
+                it('should add to the blocks', () => {
+                    assert.equal(blockchain.blocks.length, 3);
+                });
+                it('should store the transactions on the block', () => {
+                    assert.equal(blockchain.blocks[blockchain.blocks.length - 1].transactions.length, 5);
+                });
+                it('should clear the mempool', () => {
+                    assert.equal(blockchain.mempool.length, 0);
+                });
+            });
         });
     });
 });
