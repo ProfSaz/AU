@@ -11,6 +11,10 @@ function addTransaction(transaction) {
 }
 
 function mine() {
+    let transactions = [];
+    while( transactions.length < MAX_TRANSACTIONS && mempool.length > 0 ) {
+        transactions.push(mempool.pop());
+    }
     const block = {id: blocks.length}
     const hash = SHA256(JSON.stringify(block))
     blocks.push({...block, hash});
