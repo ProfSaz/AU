@@ -1,48 +1,48 @@
-# Mine Blocks
-This project is a local implementation of a blockchain structure, It includes functionalities to create blocks, mine them, and manage the blockchain's structure.
+
+# What's in a Hash
+
+This project is a local implementation of a blockchain  data structure, showcasing the concepts learned from Alchemy University. It includes a `Block` class with functionalities to generate a hash property.
 
 ## Overview
+The project consists of:
 
-The codebase consists of:
+`Block.js` The main module defining the Block class with a hash property generation functionality. 
+`hashTest.js` Test suite validating the functionality of the Block class.
 
-- **`index.js`**: Contains the core blockchain functionalities and structure.
-- **`test.js`**: Test suite that validates the functionality of the blockchain.
 
 ## Project Structure
+`Block.js`  Implements the `Block` class with hash property generation.
+`hashTest.js`Test suite to validate the correctness of the Block operations.
 
-- `index.js`: Defines the essential blockchain functionalities such as mining blocks and managing the chain.
-- `test.js`: Provides tests to verify the correctness of blockchain operations.
 
 ## Setup
-
 To run this project locally:
 
-1. Clone the repository:
-```shell
-   git clone <repository-url>
-```
+### Clone the repository:
 
-2. Install dependencies:
+```shell
+git clone <repository-url> 
+```
+### Install dependencies:
+
 ```shell
 npm install
 ```
 
-3. Run test:
+### Run tests:
+
 ```shell
 npm test
 ```
 
- ## Test Suite
-The provided test suite in test.js validates the blockchain's functionalities:
+## Test Suite
+The provided test suite in hashTest.js validates the Block class functionality:
 
-### Mining Blocks:
-Tests to ensure correct block creation and addition to the chain.
-### Block Properties: 
-Checks if blocks contain the expected properties like IDs.
+*Hash Property Generation*
+Ensures that the Block class correctly generates a hash property, adhering to the expected format.
 
-## Credit 
+## Credit
+This local adaptation is based on the blockchain concepts learned from Alchemy University's tutorial. The codebase is structured to showcase the fundamental functionalities of a blockchain block.
 
-This implementation is a local adaptation of concepts learned from Alchemy University's blockchain tutorial. The codebase is structured to demonstrate basic blockchain functionalities.
-
-# Contributing
+## Contributing
 Contributions are welcome! Feel free to open issues or pull requests for any improvements or fixes.
