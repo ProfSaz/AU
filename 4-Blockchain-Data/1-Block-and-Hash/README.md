@@ -21,7 +21,7 @@ To run this project locally:
 ### Clone the repository:
 
 ```shell
-git clone <repository-url> 
+git clone <https://github.com/ProfSaz/AU/tree/main/4-Blockchain-Data/2-Whats-in-Hash> 
 ```
 ### Install dependencies:
 
