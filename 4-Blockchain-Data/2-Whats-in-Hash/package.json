@@ -14,14 +14,12 @@
     "@noble/secp256k1": "1.7.1",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.3.1",
-    "esm": "^3.2.25",
     "ethereum-cryptography": "^2.1.2",
     "save-dev": "^0.0.1-security"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
     "chai": "^5.0.0",
-    "faker": "^6.6.6",
     "mocha": "^10.2.0"
   }
 }
