@@ -1,5 +1,6 @@
-import * as secp from "@noble/secp256k1";
-import { toHex } from "ethereum-cryptography/utils";
+const secp = require("@noble/secp256k1");
+const { toHex } = require("ethereum-cryptography/utils");
+
 
 const privatekey = toHex(secp.utils.randomPrivateKey());;
 
