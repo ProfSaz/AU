@@ -24,6 +24,8 @@ app.post("/send", (req, res) => {
   setInitialBalance(sender);
   setInitialBalance(recipient);
 
+  
+
   if (balances[sender] < amount) {
     res.status(400).send({ message: "Not enough funds!" });
   } else {
@@ -42,3 +44,20 @@ function setInitialBalance(address) {
     balances[address] = 0;
   }
 }
+
+
+  // if(!signature) res.status(404).send({ message: "signature dont was provide" });
+  // if(!recovery) res.status(400).send({ message: "recovery dont was provide" });
+
+  // try {
+    
+  //   const bytes = utf8ToBytes(JSON.stringify({ sender, recipient, amount }));
+  //   const hash = keccak256(bytes);
+
+  //   const sig = new Uint8Array(signature);
+
+  //   const publicKey = await secp.recoverPublicKey(hash, sig, recovery);
+
+  //   if(toHex(publicKey) !== sender){
+  //     res.status(400).send({ message: "signature no is valid" });
+  //   }
