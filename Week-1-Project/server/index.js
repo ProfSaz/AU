@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const secp = require("ethereum-cryptography/secp256k1");
+const { keccak256 } = require("ethereum-cryptography/keccak");
+const {toHex, utf8ToBytes} = require("ethereum-cryptography/utils");
 const cors = require("cors");
 const port = 3042;
 
@@ -18,8 +21,24 @@ app.get("/balance/:address", (req, res) => {
   res.send({ balance });
 });
 
-app.post("/send", (req, res) => {
-  const { sender, recipient, amount } = req.body;
+app.post("/send", async (req, res) => {
+  const { sender, recipient, amount, signature, recovery} = req.body;
+
+  if(!signature) res.status(404).send({ message: "signature dont was provide" });
+  if(!recovery) res.status(400).send({ message: "recovery dont was provide" });
+
+  try {
+    
+    const bytes = utf8ToBytes(JSON.stringify({ sender, recipient, amount }));
+    const hash = keccak256(bytes);
+
+    const sig = new Uint8Array(signature);
+
+    const publicKey = await secp.recoverPublicKey(hash, sig, recovery);
+
+    if(toHex(publicKey) !== sender){
+      res.status(400).send({ message: "signature no is valid" });
+    }
 
   setInitialBalance(sender);
   setInitialBalance(recipient);
@@ -33,6 +52,10 @@ app.post("/send", (req, res) => {
     balances[recipient] += amount;
     res.send({ balance: balances[sender] });
   }
+} catch (error){
+  console.log(error.message)
+}
+
 });
 
 app.listen(port, () => {
